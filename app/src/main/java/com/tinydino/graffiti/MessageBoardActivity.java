@@ -1,4 +1,4 @@
-package com.example.drew.graffiti;
+package com.tinydino.graffiti;
 
 import android.app.ListActivity;
 import android.content.Intent;
@@ -16,7 +16,8 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.drew.graffiti.presenter.MessageBoardPresenter;
+import com.example.drew.graffiti.R;
+import com.tinydino.graffiti.presenter.MessageBoardPresenter;
 
 import java.util.List;
 

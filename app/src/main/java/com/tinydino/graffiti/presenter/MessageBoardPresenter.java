@@ -1,11 +1,11 @@
-package com.example.drew.graffiti.presenter;
+package com.tinydino.graffiti.presenter;
 
 import android.graphics.Bitmap;
 
-import com.example.drew.graffiti.ChatMessage;
-import com.example.drew.graffiti.Logger;
-import com.example.drew.graffiti.MessageBoardView;
-import com.example.drew.graffiti.SocketController;
+import com.tinydino.graffiti.ChatMessage;
+import com.tinydino.graffiti.Logger;
+import com.tinydino.graffiti.MessageBoardView;
+import com.tinydino.graffiti.SocketController;
 
 import org.json.JSONException;
 import org.json.JSONObject;

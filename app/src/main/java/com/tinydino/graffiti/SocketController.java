@@ -1,4 +1,4 @@
-package com.example.drew.graffiti;
+package com.tinydino.graffiti;
 
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;

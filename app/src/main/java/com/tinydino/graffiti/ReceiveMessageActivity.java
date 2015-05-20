@@ -1,4 +1,4 @@
-package com.example.drew.graffiti;
+package com.tinydino.graffiti;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -7,6 +7,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.drew.graffiti.R;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;

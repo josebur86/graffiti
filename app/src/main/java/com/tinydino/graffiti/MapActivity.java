@@ -1,8 +1,9 @@
-package com.example.drew.graffiti;
+package com.tinydino.graffiti;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
+import com.example.drew.graffiti.R;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;

@@ -1,20 +1,15 @@
-package com.example.drew.graffiti;
+package com.tinydino.graffiti;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
-import com.github.nkzawa.socketio.client.IO;
-import com.github.nkzawa.socketio.client.Socket;
-
-import java.net.URISyntaxException;
+import com.example.drew.graffiti.R;
 
 public class UserLoginActivity extends ActionBarActivity {
 

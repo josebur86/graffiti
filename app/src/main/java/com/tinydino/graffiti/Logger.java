@@ -1,6 +1,8 @@
-package com.example.drew.graffiti;
+package com.tinydino.graffiti;
 
 import android.util.Log;
+
+import com.example.drew.graffiti.BuildConfig;
 
 public class Logger {
 

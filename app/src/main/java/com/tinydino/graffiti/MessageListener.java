@@ -1,8 +1,8 @@
-package com.example.drew.graffiti;
+package com.tinydino.graffiti;
 
 import android.app.Activity;
 
-import com.example.drew.graffiti.presenter.MessageBoardPresenter;
+import com.tinydino.graffiti.presenter.MessageBoardPresenter;
 import com.github.nkzawa.emitter.Emitter;
 
 import org.json.JSONObject;

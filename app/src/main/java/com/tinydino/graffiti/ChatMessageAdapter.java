@@ -1,4 +1,4 @@
-package com.example.drew.graffiti;
+package com.tinydino.graffiti;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,7 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import com.example.drew.graffiti.R;
+
 import java.util.List;
 
 /**
