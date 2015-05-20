@@ -24,5 +24,6 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
         map.addMarker(new MarkerOptions()
             .position(new LatLng(0, 0))
             .title("Marker"));
+        map.setMyLocationEnabled(true);
     }
 }
