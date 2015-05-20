@@ -20,9 +20,7 @@ public class UserLoginActivity extends ActionBarActivity {
 
     private TextView userNameEditText;
     private Button loginButton;
-    private String _userName;
     private final static String _defaultServerUri = "https://thawing-island-7364.herokuapp.com/";
-    private String qrCodeUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +34,6 @@ public class UserLoginActivity extends ActionBarActivity {
                 doLogin(v);
             }
         });
-
-        Bundle extras = getIntent().getExtras();
-        qrCodeUri = extras.getString("serverUri", _defaultServerUri);
     }
 
     public void doLogin(View view) {
@@ -49,7 +44,7 @@ public class UserLoginActivity extends ActionBarActivity {
 
         Intent messageBoardIntent = new Intent();
         messageBoardIntent.putExtra("userName", userName);
-        messageBoardIntent.putExtra("serverUri", qrCodeUri);
+        messageBoardIntent.putExtra("serverUri", _defaultServerUri);
         messageBoardIntent.setClass(this, MessageBoardActivity.class);
 
         startActivity(messageBoardIntent);
