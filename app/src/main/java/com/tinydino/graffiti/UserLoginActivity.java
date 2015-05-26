@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.drew.graffiti.R;
 
 public class UserLoginActivity extends ActionBarActivity {
 

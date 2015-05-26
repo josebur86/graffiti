@@ -8,14 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.drew.graffiti.R;
-
 import java.util.List;
-
-/**
- * Created by jetters on 5/17/15.
- */
-
 
 public class ChatMessageAdapter extends ArrayAdapter<ChatMessage> {
 

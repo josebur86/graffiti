@@ -2,9 +2,6 @@ package com.tinydino.graffiti;
 
 import android.graphics.Bitmap;
 
-/**
- * Created by jetters on 5/17/15.
- */
 public class ChatMessage {
     public String UserName;
     public String Message;
