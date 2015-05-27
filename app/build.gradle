@@ -30,9 +30,3 @@ dependencies {
     }
     compile 'com.google.android.gms:play-services:7.3.0'
 }
-
-project.gradle.taskGraph.whenReady {    // Temporary workaround to get travis to not check for connected android devices
-    connectedAndroidTestDebug {
-        ignoreFailures = true
-    }
-}
