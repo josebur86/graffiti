@@ -17,10 +17,6 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.tinydino.graffiti.SendMessageActivity"
-            android:label="@string/app_name" >
-        </activity>
-        <activity
             android:name="com.tinydino.graffiti.UserLoginActivity"
             android:label="@string/title_activity_user_login"
             android:screenOrientation="portrait" >
