@@ -22,6 +22,8 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:22.1.1'
-    compile 'com.github.nkzawa:socket.io-client:0.5.0'
+    compile ('com.github.nkzawa:socket.io-client:0.5.0'){
+        exclude group: 'org.json', module: 'json'   // "Fix" warnings. See https://github.com/nkzawa/engine.io-client.java/issues/13
+    }
     compile 'com.google.android.gms:play-services:7.3.0'
 }
