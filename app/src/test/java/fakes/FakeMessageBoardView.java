@@ -2,7 +2,6 @@ package fakes;
 
 import com.tinydino.graffiti.ChatMessage;
 import com.tinydino.graffiti.MessageBoardView;
-import com.tinydino.graffiti.MessageListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,10 +26,5 @@ public class FakeMessageBoardView implements MessageBoardView {
     @Override
     public void playNotificationSound() {
 
-    }
-
-    @Override
-    public MessageListener getMessageListener() {
-        return null;
     }
 }

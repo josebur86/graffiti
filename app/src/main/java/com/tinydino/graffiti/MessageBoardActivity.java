@@ -136,7 +136,6 @@ public class MessageBoardActivity extends ListActivity implements MessageBoardVi
         }
     }
 
-    @Override
     public MessageListener getMessageListener() {
         return new MessageListener(this, _presenter);
     }
