@@ -20,16 +20,6 @@ public class FakeMessageBoardView implements MessageBoardView {
     }
 
     @Override
-    public void setMessages(List<ChatMessage> messages) {
-
-    }
-
-    @Override
-    public void onAddMessage() {
-
-    }
-
-    @Override
     public void addMessageToList(ChatMessage message) {
         _messages.add(message);
     }

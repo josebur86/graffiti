@@ -10,6 +10,8 @@ import com.tinydino.graffiti.SocketController;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.nio.ByteBuffer;
+
 public class MessageBoardPresenter {
 
     private final MessageBoardView _view;
@@ -26,8 +28,6 @@ public class MessageBoardPresenter {
     }
 
     public void create() {
-//        String server = "https://thawing-island-7364.herokuapp.com/";
-//        _socketController = new SocketController(server, _username, _view.getMessageListener());
     }
 
     public void destroy() {
@@ -39,7 +39,7 @@ public class MessageBoardPresenter {
         _socketController.sendMessage(message);
     }
 
-    public void sendPicture(Bitmap image) {
+    public void sendPicture(ByteBuffer image) {
         _view.addMessageToList(new ChatMessage(_username, null, image, _location));
         // TODO: send the picture to the socket.
     }

@@ -18,15 +18,16 @@ import android.widget.TextView;
 
 import com.tinydino.graffiti.presenter.MessageBoardPresenter;
 
-import java.util.List;
+import java.io.ByteArrayOutputStream;
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
 
 public class MessageBoardActivity extends ListActivity implements MessageBoardView {
 
-    private ListView _mainMessageList;
+    private ChatMessageAdapter _messageAdapter;
     private TextView _messageEdit;
 
     private MessageBoardPresenter _presenter;
-    private ChatMessageAdapter _chatAdapter;
 
     private static int kRequestImageCapture = 1;
 
@@ -46,7 +47,10 @@ public class MessageBoardActivity extends ListActivity implements MessageBoardVi
             }
         });
 
-        _mainMessageList = (ListView) findViewById(android.R.id.list);
+        _messageAdapter = new ChatMessageAdapter(
+                this, R.layout.list_item_style, new ArrayList<ChatMessage>());
+        ListView mainMessageList = (ListView) findViewById(android.R.id.list);
+        mainMessageList.setAdapter(_messageAdapter);
 
         String username = getIntent().getStringExtra("userName");
         SocketControllerImpl socketController = new SocketControllerImpl(
@@ -73,10 +77,18 @@ public class MessageBoardActivity extends ListActivity implements MessageBoardVi
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == kRequestImageCapture && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
 
-            _presenter.sendPicture(imageBitmap);
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            _presenter.sendPicture(getBitmapBuffer(imageBitmap));
         }
+    }
+
+    private ByteBuffer getBitmapBuffer(Bitmap bitmap) {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        ByteBuffer buffer = ByteBuffer.wrap(stream.toByteArray());
+
+        return buffer;
     }
 
     @Override
@@ -109,19 +121,8 @@ public class MessageBoardActivity extends ListActivity implements MessageBoardVi
     }
 
     @Override
-    public void setMessages(List<ChatMessage> messages) {
-        _chatAdapter = new ChatMessageAdapter(this, R.layout.list_item_style, messages);
-        _mainMessageList.setAdapter(_chatAdapter);
-    }
-
-    @Override
-    public void onAddMessage() {
-        _chatAdapter.notifyDataSetChanged();
-    }
-
-    @Override
     public void addMessageToList(ChatMessage message) {
-
+        _messageAdapter.add(message);
     }
 
     @Override

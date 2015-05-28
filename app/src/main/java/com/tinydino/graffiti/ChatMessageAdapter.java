@@ -1,6 +1,8 @@
 package com.tinydino.graffiti;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.nio.ByteBuffer;
 import java.util.List;
 
 public class ChatMessageAdapter extends ArrayAdapter<ChatMessage> {
@@ -31,7 +34,7 @@ public class ChatMessageAdapter extends ArrayAdapter<ChatMessage> {
 
         ImageView image = (ImageView) v.findViewById(R.id.chat_pic);
         if (message.Image != null) {
-            image.setImageBitmap(message.Image);
+            image.setImageBitmap(bitmapFromBuffer(message.Image));
             image.setVisibility(View.VISIBLE);
         }
         else {
@@ -46,5 +49,12 @@ public class ChatMessageAdapter extends ArrayAdapter<ChatMessage> {
         messageText.setText(message.Message);
 
         return v;
+    }
+
+    private Bitmap bitmapFromBuffer(ByteBuffer buffer) {
+        byte[] array = buffer.array();
+        Bitmap b = BitmapFactory.decodeByteArray(array, 0, array.length);
+
+        return b;
     }
 }

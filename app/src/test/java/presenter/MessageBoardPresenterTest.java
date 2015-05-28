@@ -1,9 +1,12 @@
 package com.tinydino.graffiti.test.presenter;
 
+import com.tinydino.graffiti.ChatMessage;
 import com.tinydino.graffiti.presenter.MessageBoardPresenter;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import java.nio.ByteBuffer;
 
 import fakes.FakeMessageBoardView;
 import fakes.FakeSocketController;
@@ -12,8 +15,8 @@ import static org.junit.Assert.*;
 
 public class MessageBoardPresenterTest {
 
-    FakeMessageBoardView _view;
-    FakeSocketController _socketController;
+    private FakeMessageBoardView _view;
+    private FakeSocketController _socketController;
 
     @Before
     public void setup()
@@ -29,6 +32,23 @@ public class MessageBoardPresenterTest {
         String message = "Fake Message";
         presenter.sendMessage(message);
 
-        assertEquals(message, _view.getMessages().get(0).Message);
+        assertEquals(1, _view.getMessages().size());
+        ChatMessage chatMessage = _view.getMessages().get(0);
+        assertNull(chatMessage.Image);
+        assertEquals(message, chatMessage.Message);
+    }
+
+    @Test
+    public void sendPictureAddNewPictureToView() {
+        MessageBoardPresenter presenter = new MessageBoardPresenter(_view, _socketController, "Test User", "Test Location");
+        String _snoop =
+                "R0lGODlhYAL+AvcAAAAAAAEBAQICAgMDAwQEBAUFBQYGBgcHBwgICAkJCQoKCgsLCww";
+        ByteBuffer imageBuffer = ByteBuffer.wrap(_snoop.getBytes());
+        presenter.sendPicture(imageBuffer);
+
+        assertEquals(1, _view.getMessages().size());
+        ChatMessage chatMessage = _view.getMessages().get(0);
+        assertNull(chatMessage.Message);
+        assertEquals(_snoop, new String(chatMessage.Image.array()));
     }
 }
