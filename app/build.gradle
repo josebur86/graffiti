@@ -29,4 +29,8 @@ dependencies {
         exclude group: 'org.json', module: 'json'   // "Fix" warnings. See https://github.com/nkzawa/engine.io-client.java/issues/13
     }
     compile 'com.google.android.gms:play-services:7.3.0'
+    provided 'com.squareup.dagger:dagger-compiler:1.2.2'
+
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.mockito:mockito-core:1.9.5'
 }
