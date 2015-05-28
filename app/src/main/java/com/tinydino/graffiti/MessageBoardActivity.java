@@ -49,7 +49,10 @@ public class MessageBoardActivity extends ListActivity implements MessageBoardVi
         _mainMessageList = (ListView) findViewById(android.R.id.list);
 
         String username = getIntent().getStringExtra("userName");
-        _presenter = new MessageBoardPresenter(this, username, "TODO");
+        SocketControllerImpl socketController = new SocketControllerImpl(
+                "https://thawing-island-7364.herokuapp.com/",
+                username, getMessageListener());
+        _presenter = new MessageBoardPresenter(this, socketController, username, "TODO");
         _presenter.create();
     }
 
@@ -114,6 +117,11 @@ public class MessageBoardActivity extends ListActivity implements MessageBoardVi
     @Override
     public void onAddMessage() {
         _chatAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void addMessageToList(ChatMessage message) {
+
     }
 
     @Override

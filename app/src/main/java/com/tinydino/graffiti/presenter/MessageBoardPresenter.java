@@ -10,32 +10,24 @@ import com.tinydino.graffiti.SocketController;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class MessageBoardPresenter {
 
-    private MessageBoardView _view;
-    private SocketController _socketController;
+    private final MessageBoardView _view;
+    private final SocketController _socketController;
 
-    private String _username;
-    private String _location;
+    private final String _username;
+    private final String _location;
 
-    private List<ChatMessage> _messages;
-
-    public MessageBoardPresenter(MessageBoardView view, String username, String location) {
+    public MessageBoardPresenter(MessageBoardView view, SocketController socketController, String username, String location) {
         _view = view;
+        _socketController = socketController;
         _username = username;
         _location = location;
-
-        _messages = new ArrayList<ChatMessage>();
     }
 
     public void create() {
-        _view.setMessages(_messages);
-
-        String server = "https://thawing-island-7364.herokuapp.com/";
-        _socketController = new SocketController(server, _username, _view.getMessageListener());
+//        String server = "https://thawing-island-7364.herokuapp.com/";
+//        _socketController = new SocketController(server, _username, _view.getMessageListener());
     }
 
     public void destroy() {
@@ -43,14 +35,12 @@ public class MessageBoardPresenter {
     }
 
     public void sendMessage(String message) {
-        _messages.add(new ChatMessage(_username, message, null, _location));
-        _view.onAddMessage();
+        _view.addMessageToList(new ChatMessage(_username, message, null, _location));
         _socketController.sendMessage(message);
     }
 
     public void sendPicture(Bitmap image) {
-        _messages.add(new ChatMessage(_username, null, image, _location));
-        _view.onAddMessage();
+        _view.addMessageToList(new ChatMessage(_username, null, image, _location));
         // TODO: send the picture to the socket.
     }
 
@@ -67,8 +57,7 @@ public class MessageBoardPresenter {
             return;
         }
 
-        _messages.add(new ChatMessage(username, message, null, location));
-        _view.onAddMessage();
+        _view.addMessageToList(new ChatMessage(username, message, null, location));
         _view.playNotificationSound();
     }
 }
