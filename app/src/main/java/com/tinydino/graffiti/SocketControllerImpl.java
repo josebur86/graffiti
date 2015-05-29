@@ -1,5 +1,6 @@
 package com.tinydino.graffiti;
 
+import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
 
@@ -11,11 +12,11 @@ public class SocketControllerImpl implements SocketController {
     private static String kMessageEvent = "new message";
     private static String kNewUserEvent = "add user";
 
-    public SocketControllerImpl(String server, String username, MessageListener messageListener) {
+    public SocketControllerImpl(String server, String username, Emitter.Listener messageListener) {
         try {
             _socket = IO.socket(server);
         } catch (URISyntaxException e) {
-            new Logger().log(e.toString());
+            throw new IllegalArgumentException("Server has an invalid URI: " + server);
         }
 
         _socket.on(kMessageEvent, messageListener);
