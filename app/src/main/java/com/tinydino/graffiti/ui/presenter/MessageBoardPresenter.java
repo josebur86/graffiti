@@ -1,6 +1,4 @@
-package com.tinydino.graffiti.presenter;
-
-import android.graphics.Bitmap;
+package com.tinydino.graffiti.ui.presenter;
 
 import com.tinydino.graffiti.ChatMessage;
 import com.tinydino.graffiti.Logger;

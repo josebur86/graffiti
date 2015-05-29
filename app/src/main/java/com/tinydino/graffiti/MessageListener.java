@@ -2,7 +2,7 @@ package com.tinydino.graffiti;
 
 import android.app.Activity;
 
-import com.tinydino.graffiti.presenter.MessageBoardPresenter;
+import com.tinydino.graffiti.ui.presenter.MessageBoardPresenter;
 import com.github.nkzawa.emitter.Emitter;
 
 import org.json.JSONObject;

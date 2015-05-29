@@ -1,7 +1,7 @@
-package com.tinydino.test.presenter;
+package com.tinydino.test.ui.presenter;
 
 import com.tinydino.graffiti.ChatMessage;
-import com.tinydino.graffiti.presenter.MessageBoardPresenter;
+import com.tinydino.graffiti.ui.presenter.MessageBoardPresenter;
 import com.tinydino.test.fakes.FakeMessageBoardView;
 import com.tinydino.test.fakes.FakeSocketController;
 

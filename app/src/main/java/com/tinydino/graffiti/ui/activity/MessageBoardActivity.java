@@ -1,4 +1,4 @@
-package com.tinydino.graffiti;
+package com.tinydino.graffiti.ui.activity;
 
 import android.app.ListActivity;
 import android.content.Intent;
@@ -16,7 +16,13 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.tinydino.graffiti.presenter.MessageBoardPresenter;
+import com.tinydino.graffiti.ChatMessage;
+import com.tinydino.graffiti.ChatMessageAdapter;
+import com.tinydino.graffiti.MessageBoardView;
+import com.tinydino.graffiti.MessageListener;
+import com.tinydino.graffiti.R;
+import com.tinydino.graffiti.SocketControllerImpl;
+import com.tinydino.graffiti.ui.presenter.MessageBoardPresenter;
 
 import java.io.ByteArrayOutputStream;
 import java.nio.ByteBuffer;

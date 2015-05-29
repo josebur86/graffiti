@@ -17,7 +17,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.tinydino.graffiti.UserLoginActivity"
+            android:name=".ui.activity.UserLoginActivity"
             android:label="@string/title_activity_user_login"
             android:screenOrientation="portrait" >
             <intent-filter>
@@ -26,12 +26,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.tinydino.graffiti.MessageBoardActivity"
+            android:name=".ui.activity.MessageBoardActivity"
             android:label="@string/title_activity_message_board"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.tinydino.graffiti.MapActivity"
+            android:name=".ui.activity.MapActivity"
             android:label="Map"
             android:screenOrientation="portrait" >
         </activity>
