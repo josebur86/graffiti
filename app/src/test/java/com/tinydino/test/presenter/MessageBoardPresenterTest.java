@@ -1,15 +1,14 @@
-package com.tinydino.graffiti.test.presenter;
+package com.tinydino.test.presenter;
 
 import com.tinydino.graffiti.ChatMessage;
 import com.tinydino.graffiti.presenter.MessageBoardPresenter;
+import com.tinydino.test.fakes.FakeMessageBoardView;
+import com.tinydino.test.fakes.FakeSocketController;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import java.nio.ByteBuffer;
-
-import fakes.FakeMessageBoardView;
-import fakes.FakeSocketController;
 
 import static org.junit.Assert.*;
 

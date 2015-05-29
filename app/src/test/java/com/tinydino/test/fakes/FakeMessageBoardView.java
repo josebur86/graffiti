@@ -1,4 +1,4 @@
-package fakes;
+package com.tinydino.test.fakes;
 
 import com.tinydino.graffiti.ChatMessage;
 import com.tinydino.graffiti.MessageBoardView;
