@@ -2,29 +2,25 @@ language: android
 jdk: oraclejdk7
 android:
   components:
-    # BuildTools version used by the project.
-    - build-tools-21.1.2
-
-    # SDK version used to compile the project
-    - android-22
-
-      # Additional Components
-    - extra-android-support
-    - extra-google-google_play_services
-    - extra-android-m2repository
-    - extra-google-m2repository  
-
-    # System image used for running emulator during tests.
-    - sys-img-armeabi-v7a-android-21
-    - sys-img-x86-android-17
+  - build-tools-21.1.2
+  - android-22
+  - extra-android-support
+  - extra-google-google_play_services
+  - extra-android-m2repository
+  - extra-google-m2repository
+  - sys-img-armeabi-v7a-android-21
+  - sys-img-x86-android-17
 before_install:
-  - echo yes | android update sdk --filter extra-google-google_play_services --no-ui --force > /dev/null
-  - echo yes | android update sdk --filter extra-android-support --no-ui --force > /dev/null
-  - echo yes | android update sdk --filter extra-android-m2repository --no-ui --force > /dev/null
-
-# Emulator Management: Create, Start and Wait
+- echo yes | android update sdk --filter extra-google-google_play_services --no-ui
+  --force > /dev/null
+- echo yes | android update sdk --filter extra-android-support --no-ui --force > /dev/null
+- echo yes | android update sdk --filter extra-android-m2repository --no-ui --force
+  > /dev/null
 before_script:
-  - echo no | android create avd --force -n test -t android-19 --abi armeabi-v7a
-  - emulator -avd test -no-skin -no-audio -no-window &
-  - android-wait-for-emulator
-  - adb shell input keyevent 82 &
+- echo no | android create avd --force -n test -t android-19 --abi armeabi-v7a
+- emulator -avd test -no-skin -no-audio -no-window &
+- android-wait-for-emulator
+- adb shell input keyevent 82 &
+notifications:
+  slack:
+    secure: WKja0baHvyk64mmbYH9eAqNnK52VByIlL8imhlses2UsnyjBzClt8Egq4a0C2q/yOV1eAnEnU09bf8yz0zb22aqOTOuedWt/bTPvwawk4Tv2YdQC0Z+Fzd8tMCpm1/D2hG8rZKoexd20IQUBW/kaXV727KSC6iLfg8rIKvvrlo0cixBAFjDUTkJz8yuYdDwcduH5JFGpjNXatR3yQPeRWOEl/yZfUPsq4f8C/lf6FYgaytCZ2+XS0eVraXS3vH/2L2OM0ajLO2Zc6S+LB/2YftPgfFUea/nAhBYMdXZLmHd9mj0XOZKLE0SUnxXxwGMUse5dNtsRi9POEavaK26dPGe0O7cokNcFc0MREWdvp2zFuR9EKq9VBX6gNLNmV3mSd/14rd/ZF9N8a67mMN/rD/MzllIOvLkFjwQ3BaygN20NftZCEMBwuoh2+7YhGPLYmlGmiu93oiryt4OP++ukiwSLD7Lkk7I9Y8v7ks7HFJh/lu3pCFq3eClTE/Bx7zvW7E3dyD/4cbddKMjm+yZx0oixJxoHjrlXj7HqnaOxWePQhwi6RMyTePmOA3zYABzo+B2r0wcYTL9f3OWxRbE/DuTriotB+3Xa6YzTTHe+63DVHOoFp8nWw+44FJGXuvJkXeTV9kABSgZNIkxlWLmxMMxYVBGvPcJleIVnh+M7srU=
