@@ -1,6 +1,5 @@
 package com.tinydino.graffiti.ui.activity;
 
-import android.app.ListActivity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.media.Ringtone;
@@ -21,19 +20,24 @@ import com.tinydino.graffiti.ChatMessage;
 import com.tinydino.graffiti.ChatMessageAdapter;
 import com.tinydino.graffiti.MessageListener;
 import com.tinydino.graffiti.R;
-import com.tinydino.graffiti.domain.socket.GetSocketControllerInteractor;
 import com.tinydino.graffiti.ui.presenter.MessageBoardPresenter;
+import com.tinydino.graffiti.ui.presenter.UIModule;
+//import com.tinydino.graffiti.ui.presenter.UIModule;
 
 import java.io.ByteArrayOutputStream;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
-public class MessageBoardActivity extends ListActivity implements MessageBoardPresenter.View {
+import javax.inject.Inject;
+
+public class MessageBoardActivity extends BaseActivity implements MessageBoardPresenter.View {
 
     private ChatMessageAdapter _messageAdapter;
     private TextView _messageEdit;
 
-    private MessageBoardPresenter _presenter;
+    @Inject MessageBoardPresenter _presenter;
     private String _username;
     private String _location;
 
@@ -63,8 +67,14 @@ public class MessageBoardActivity extends ListActivity implements MessageBoardPr
         _username = getIntent().getStringExtra("userName");
         _location = "TODO";
 
-        _presenter = new MessageBoardPresenter(new GetSocketControllerInteractor());
         _presenter.setView(this);
+    }
+
+    @Override
+    protected List<Object> getModules() {
+        List<Object> modules = new LinkedList<>();
+        modules.add(new UIModule());
+        return modules;
     }
 
     private void onSend() {

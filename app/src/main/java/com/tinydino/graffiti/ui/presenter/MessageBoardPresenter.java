@@ -11,6 +11,8 @@ import org.json.JSONObject;
 
 import java.nio.ByteBuffer;
 
+import javax.inject.Inject;
+
 public class MessageBoardPresenter {
 
     private View _view;
@@ -20,6 +22,7 @@ public class MessageBoardPresenter {
     private String _username;
     private String _location;
 
+    @Inject
     public MessageBoardPresenter(GetSocketController getSocketController) {
         _getSocketController = getSocketController;
     }
