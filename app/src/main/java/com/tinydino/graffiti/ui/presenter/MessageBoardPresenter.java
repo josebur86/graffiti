@@ -1,9 +1,9 @@
 package com.tinydino.graffiti.ui.presenter;
 
 import com.github.nkzawa.emitter.Emitter;
-import com.tinydino.graffiti.ChatMessage;
-import com.tinydino.graffiti.Logger;
-import com.tinydino.graffiti.SocketController;
+import com.tinydino.graffiti.domain.chat.ChatMessage;
+import com.tinydino.graffiti.ui.util.Logger;
+import com.tinydino.graffiti.domain.socket.SocketController;
 import com.tinydino.graffiti.domain.socket.GetSocketController;
 
 import org.json.JSONException;

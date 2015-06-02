@@ -16,9 +16,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.github.nkzawa.emitter.Emitter;
-import com.tinydino.graffiti.ChatMessage;
-import com.tinydino.graffiti.ChatMessageAdapter;
-import com.tinydino.graffiti.MessageListener;
+import com.tinydino.graffiti.domain.chat.ChatMessage;
+import com.tinydino.graffiti.ui.util.ChatMessageAdapter;
+import com.tinydino.graffiti.ui.util.MessageListener;
 import com.tinydino.graffiti.R;
 import com.tinydino.graffiti.ui.presenter.MessageBoardPresenter;
 import com.tinydino.graffiti.ui.presenter.UIModule;

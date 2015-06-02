@@ -1,8 +1,6 @@
 package com.tinydino.graffiti.domain.socket;
 
 import com.github.nkzawa.emitter.Emitter;
-import com.tinydino.graffiti.SocketController;
-import com.tinydino.graffiti.SocketControllerImpl;
 
 import javax.inject.Inject;
 

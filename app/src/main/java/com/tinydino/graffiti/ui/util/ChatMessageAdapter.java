@@ -1,4 +1,4 @@
-package com.tinydino.graffiti;
+package com.tinydino.graffiti.ui.util;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -9,6 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.tinydino.graffiti.R;
+import com.tinydino.graffiti.domain.chat.ChatMessage;
 
 import java.nio.ByteBuffer;
 import java.util.List;

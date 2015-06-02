@@ -1,4 +1,4 @@
-package com.tinydino.graffiti;
+package com.tinydino.graffiti.domain.chat;
 
 import java.nio.ByteBuffer;
 

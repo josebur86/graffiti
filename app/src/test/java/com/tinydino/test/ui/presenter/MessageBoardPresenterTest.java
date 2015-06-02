@@ -1,6 +1,6 @@
 package com.tinydino.test.ui.presenter;
 
-import com.tinydino.graffiti.ChatMessage;
+import com.tinydino.graffiti.domain.chat.ChatMessage;
 import com.tinydino.graffiti.domain.socket.GetSocketController;
 import com.tinydino.graffiti.ui.presenter.MessageBoardPresenter;
 import com.tinydino.test.fakes.FakeGetSocketController;

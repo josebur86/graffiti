@@ -1,7 +1,7 @@
 package com.tinydino.test.fakes;
 
 import com.github.nkzawa.emitter.Emitter;
-import com.tinydino.graffiti.ChatMessage;
+import com.tinydino.graffiti.domain.chat.ChatMessage;
 import com.tinydino.graffiti.ui.presenter.MessageBoardPresenter;
 
 import java.util.ArrayList;

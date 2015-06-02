@@ -1,6 +1,6 @@
 package com.tinydino.test.fakes;
 
-import com.tinydino.graffiti.SocketController;
+import com.tinydino.graffiti.domain.socket.SocketController;
 
 import java.util.ArrayList;
 import java.util.List;

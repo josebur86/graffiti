@@ -1,6 +1,8 @@
-package com.tinydino.graffiti;
+package com.tinydino.graffiti.ui.util;
 
 import android.util.Log;
+
+import com.tinydino.graffiti.BuildConfig;
 
 public class Logger {
 

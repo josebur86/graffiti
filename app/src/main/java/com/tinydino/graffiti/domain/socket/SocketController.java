@@ -1,4 +1,4 @@
-package com.tinydino.graffiti;
+package com.tinydino.graffiti.domain.socket;
 
 public interface SocketController {
     void sendMessage(String message);

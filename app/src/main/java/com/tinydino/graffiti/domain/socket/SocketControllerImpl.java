@@ -1,4 +1,4 @@
-package com.tinydino.graffiti;
+package com.tinydino.graffiti.domain.socket;
 
 import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
