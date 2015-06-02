@@ -16,11 +16,12 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.github.nkzawa.emitter.Emitter;
 import com.tinydino.graffiti.ChatMessage;
 import com.tinydino.graffiti.ChatMessageAdapter;
 import com.tinydino.graffiti.MessageListener;
 import com.tinydino.graffiti.R;
-import com.tinydino.graffiti.SocketControllerImpl;
+import com.tinydino.graffiti.domain.socket.GetSocketControllerInteractor;
 import com.tinydino.graffiti.ui.presenter.MessageBoardPresenter;
 
 import java.io.ByteArrayOutputStream;
@@ -33,6 +34,8 @@ public class MessageBoardActivity extends ListActivity implements MessageBoardPr
     private TextView _messageEdit;
 
     private MessageBoardPresenter _presenter;
+    private String _username;
+    private String _location;
 
     private static int kRequestImageCapture = 1;
 
@@ -57,13 +60,11 @@ public class MessageBoardActivity extends ListActivity implements MessageBoardPr
         ListView mainMessageList = (ListView) findViewById(android.R.id.list);
         mainMessageList.setAdapter(_messageAdapter);
 
-        String username = getIntent().getStringExtra("userName");
-        SocketControllerImpl socketController = new SocketControllerImpl(
-                "https://thawing-island-7364.herokuapp.com/",
-                username, getMessageListener());
-        _presenter = new MessageBoardPresenter(socketController, username, "TODO");
+        _username = getIntent().getStringExtra("userName");
+        _location = "TODO";
+
+        _presenter = new MessageBoardPresenter(new GetSocketControllerInteractor());
         _presenter.setView(this);
-        _presenter.create();
     }
 
     private void onSend() {
@@ -142,7 +143,18 @@ public class MessageBoardActivity extends ListActivity implements MessageBoardPr
         }
     }
 
-    public MessageListener getMessageListener() {
+    @Override
+    public String getUsername() {
+        return _username;
+    }
+
+    @Override
+    public String getLocation() {
+        return _location;
+    }
+
+    @Override
+    public Emitter.Listener getMessageListener() {
         return new MessageListener(this, _presenter);
     }
 

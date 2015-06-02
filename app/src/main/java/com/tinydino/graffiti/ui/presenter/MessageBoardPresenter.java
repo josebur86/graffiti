@@ -1,8 +1,10 @@
 package com.tinydino.graffiti.ui.presenter;
 
+import com.github.nkzawa.emitter.Emitter;
 import com.tinydino.graffiti.ChatMessage;
 import com.tinydino.graffiti.Logger;
 import com.tinydino.graffiti.SocketController;
+import com.tinydino.graffiti.domain.socket.GetSocketController;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -12,22 +14,33 @@ import java.nio.ByteBuffer;
 public class MessageBoardPresenter {
 
     private View _view;
-    private final SocketController _socketController;
+    private SocketController _socketController;
+    private GetSocketController _getSocketController;
 
-    private final String _username;
-    private final String _location;
+    private String _username;
+    private String _location;
 
-    public MessageBoardPresenter(SocketController socketController, String username, String location) {
-        _socketController = socketController;
-        _username = username;
-        _location = location;
+    public MessageBoardPresenter(GetSocketController getSocketController) {
+        _getSocketController = getSocketController;
     }
 
     public void setView(View view) {
         _view = view;
-    }
 
-    public void create() {
+        _username = _view.getUsername();
+        _location = _view.getLocation();
+        _getSocketController.execute("https://thawing-island-7364.herokuapp.com/",
+                _view.getUsername(), _view.getMessageListener(), new GetSocketController.Callback() {
+                    @Override
+                    public void onConnection(SocketController socketController) {
+                        _socketController = socketController;
+                    }
+
+                    @Override
+                    public void onUriError() {
+                        // TODO: Send a toast that to inform the user.
+                    }
+                });
     }
 
     public void destroy() {
@@ -64,5 +77,8 @@ public class MessageBoardPresenter {
     public interface View {
         void addMessageToList(ChatMessage message);
         void playNotificationSound();
+        String getUsername();
+        String getLocation();
+        Emitter.Listener getMessageListener();
     }
 }

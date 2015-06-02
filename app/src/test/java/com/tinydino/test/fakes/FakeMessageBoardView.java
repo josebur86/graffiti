@@ -1,5 +1,6 @@
 package com.tinydino.test.fakes;
 
+import com.github.nkzawa.emitter.Emitter;
 import com.tinydino.graffiti.ChatMessage;
 import com.tinydino.graffiti.ui.presenter.MessageBoardPresenter;
 
@@ -26,5 +27,25 @@ public class FakeMessageBoardView implements MessageBoardPresenter.View {
     @Override
     public void playNotificationSound() {
 
+    }
+
+    @Override
+    public String getUsername() {
+        return "FakeUsername";
+    }
+
+    @Override
+    public String getLocation() {
+        return "FakeLocation";
+    }
+
+    @Override
+    public Emitter.Listener getMessageListener() {
+        return new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+
+            }
+        };
     }
 }

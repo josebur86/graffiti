@@ -1,7 +1,9 @@
 package com.tinydino.test.ui.presenter;
 
 import com.tinydino.graffiti.ChatMessage;
+import com.tinydino.graffiti.domain.socket.GetSocketController;
 import com.tinydino.graffiti.ui.presenter.MessageBoardPresenter;
+import com.tinydino.test.fakes.FakeGetSocketController;
 import com.tinydino.test.fakes.FakeMessageBoardView;
 import com.tinydino.test.fakes.FakeSocketController;
 
@@ -26,7 +28,8 @@ public class MessageBoardPresenterTest {
 
     @Test
     public void sendMessageAddsNewMessageToView() {
-        MessageBoardPresenter presenter = new MessageBoardPresenter(_socketController, "Test User", "Test Location");
+        GetSocketController getSocketController = new FakeGetSocketController(_socketController);
+        MessageBoardPresenter presenter = new MessageBoardPresenter(getSocketController);
         presenter.setView(_view);
 
         String message = "Fake Message";
@@ -39,8 +42,22 @@ public class MessageBoardPresenterTest {
     }
 
     @Test
+    public void sendMessageAddsNewMessageToSocketController() {
+        FakeGetSocketController getSocketController = new FakeGetSocketController(_socketController);
+        MessageBoardPresenter presenter = new MessageBoardPresenter(getSocketController);
+        presenter.setView(_view);
+
+        String message = "Fake message";
+        presenter.sendMessage(message);
+
+        assertEquals(1, _socketController.getMessages().size());
+        assertEquals(message, _socketController.getMessages().get(0));
+    }
+
+    @Test
     public void sendPictureAddNewPictureToView() {
-        MessageBoardPresenter presenter = new MessageBoardPresenter(_socketController, "Test User", "Test Location");
+        GetSocketController getSocketController = new FakeGetSocketController(_socketController);
+        MessageBoardPresenter presenter = new MessageBoardPresenter(getSocketController);
         presenter.setView(_view);
         String _snoop =
                 "R0lGODlhYAL+AvcAAAAAAAEBAQICAgMDAwQEBAUFBQYGBgcHBwgICAkJCQoKCgsLCww";
