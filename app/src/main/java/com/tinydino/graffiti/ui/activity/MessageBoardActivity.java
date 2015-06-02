@@ -18,7 +18,6 @@ import android.widget.TextView;
 
 import com.tinydino.graffiti.ChatMessage;
 import com.tinydino.graffiti.ChatMessageAdapter;
-import com.tinydino.graffiti.MessageBoardView;
 import com.tinydino.graffiti.MessageListener;
 import com.tinydino.graffiti.R;
 import com.tinydino.graffiti.SocketControllerImpl;
@@ -28,7 +27,7 @@ import java.io.ByteArrayOutputStream;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 
-public class MessageBoardActivity extends ListActivity implements MessageBoardView {
+public class MessageBoardActivity extends ListActivity implements MessageBoardPresenter.View {
 
     private ChatMessageAdapter _messageAdapter;
     private TextView _messageEdit;
@@ -62,7 +61,8 @@ public class MessageBoardActivity extends ListActivity implements MessageBoardVi
         SocketControllerImpl socketController = new SocketControllerImpl(
                 "https://thawing-island-7364.herokuapp.com/",
                 username, getMessageListener());
-        _presenter = new MessageBoardPresenter(this, socketController, username, "TODO");
+        _presenter = new MessageBoardPresenter(socketController, username, "TODO");
+        _presenter.setView(this);
         _presenter.create();
     }
 

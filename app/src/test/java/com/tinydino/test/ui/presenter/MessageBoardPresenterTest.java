@@ -26,7 +26,8 @@ public class MessageBoardPresenterTest {
 
     @Test
     public void sendMessageAddsNewMessageToView() {
-        MessageBoardPresenter presenter = new MessageBoardPresenter(_view, _socketController, "Test User", "Test Location");
+        MessageBoardPresenter presenter = new MessageBoardPresenter(_socketController, "Test User", "Test Location");
+        presenter.setView(_view);
 
         String message = "Fake Message";
         presenter.sendMessage(message);
@@ -39,7 +40,8 @@ public class MessageBoardPresenterTest {
 
     @Test
     public void sendPictureAddNewPictureToView() {
-        MessageBoardPresenter presenter = new MessageBoardPresenter(_view, _socketController, "Test User", "Test Location");
+        MessageBoardPresenter presenter = new MessageBoardPresenter(_socketController, "Test User", "Test Location");
+        presenter.setView(_view);
         String _snoop =
                 "R0lGODlhYAL+AvcAAAAAAAEBAQICAgMDAwQEBAUFBQYGBgcHBwgICAkJCQoKCgsLCww";
         ByteBuffer imageBuffer = ByteBuffer.wrap(_snoop.getBytes());

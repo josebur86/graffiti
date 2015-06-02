@@ -2,7 +2,6 @@ package com.tinydino.graffiti.ui.presenter;
 
 import com.tinydino.graffiti.ChatMessage;
 import com.tinydino.graffiti.Logger;
-import com.tinydino.graffiti.MessageBoardView;
 import com.tinydino.graffiti.SocketController;
 
 import org.json.JSONException;
@@ -12,17 +11,20 @@ import java.nio.ByteBuffer;
 
 public class MessageBoardPresenter {
 
-    private final MessageBoardView _view;
+    private View _view;
     private final SocketController _socketController;
 
     private final String _username;
     private final String _location;
 
-    public MessageBoardPresenter(MessageBoardView view, SocketController socketController, String username, String location) {
-        _view = view;
+    public MessageBoardPresenter(SocketController socketController, String username, String location) {
         _socketController = socketController;
         _username = username;
         _location = location;
+    }
+
+    public void setView(View view) {
+        _view = view;
     }
 
     public void create() {
@@ -57,5 +59,10 @@ public class MessageBoardPresenter {
 
         _view.addMessageToList(new ChatMessage(username, message, null, location));
         _view.playNotificationSound();
+    }
+
+    public interface View {
+        void addMessageToList(ChatMessage message);
+        void playNotificationSound();
     }
 }

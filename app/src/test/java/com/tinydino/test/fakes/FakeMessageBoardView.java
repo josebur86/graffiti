@@ -1,12 +1,12 @@
 package com.tinydino.test.fakes;
 
 import com.tinydino.graffiti.ChatMessage;
-import com.tinydino.graffiti.MessageBoardView;
+import com.tinydino.graffiti.ui.presenter.MessageBoardPresenter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FakeMessageBoardView implements MessageBoardView {
+public class FakeMessageBoardView implements MessageBoardPresenter.View {
 
     private final List<ChatMessage> _messages;
 
