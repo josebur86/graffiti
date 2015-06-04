@@ -11,6 +11,7 @@ android:
   - sys-img-armeabi-v7a-android-21
   - sys-img-x86-android-17
 before_install:
+- openssl aes-256-cbc -K $encrypted_4c80fcc09bff_key -iv $encrypted_4c80fcc09bff_iv -in api_keys.xml.enc -out api_keys.xml -d
 - echo yes | android update sdk --filter extra-google-google_play_services --no-ui
   --force > /dev/null
 - echo yes | android update sdk --filter extra-android-support --no-ui --force > /dev/null
