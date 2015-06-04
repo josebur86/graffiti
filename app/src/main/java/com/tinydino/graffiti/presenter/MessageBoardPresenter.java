@@ -23,12 +23,25 @@ public class MessageBoardPresenter {
 
     private List<ChatMessage> _messages;
 
+    public MessageBoardPresenter(MessageBoardView view, String username)
+    {
+        _view = view;
+        _username = username;
+
+        _messages = new ArrayList<ChatMessage>();
+    }
+
     public MessageBoardPresenter(MessageBoardView view, String username, String location) {
         _view = view;
         _username = username;
         _location = location;
 
         _messages = new ArrayList<ChatMessage>();
+    }
+
+    public void setLocation(String location)
+    {
+        _location = location;
     }
 
     public void create() {
