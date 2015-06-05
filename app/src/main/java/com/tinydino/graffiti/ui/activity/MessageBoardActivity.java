@@ -15,6 +15,13 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.location.places.PlaceLikelihoodBuffer;
+import com.google.android.gms.location.places.Places;
+
 import com.github.nkzawa.emitter.Emitter;
 import com.tinydino.graffiti.domain.chat.ChatMessage;
 import com.tinydino.graffiti.ui.util.ChatMessageAdapter;
@@ -32,8 +39,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class MessageBoardActivity extends BaseActivity implements MessageBoardPresenter.View {
-
+public class MessageBoardActivity extends BaseActivity implements MessageBoardPresenter.View, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     private ChatMessageAdapter _messageAdapter;
     private TextView _messageEdit;
 
@@ -42,6 +48,8 @@ public class MessageBoardActivity extends BaseActivity implements MessageBoardPr
     private String _location;
 
     private static int kRequestImageCapture = 1;
+
+    private String currentLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +76,7 @@ public class MessageBoardActivity extends BaseActivity implements MessageBoardPr
         _location = "TODO";
 
         _presenter.setView(this);
+        getMostProbableCurrentLocation(); //TODO_DR: This is garbage.
     }
 
     @Override
@@ -185,6 +194,64 @@ public class MessageBoardActivity extends BaseActivity implements MessageBoardPr
         mapIntent.setClass(this, MapActivity.class);
 
         startActivity(mapIntent);
+    }
+
+    @Override
+    public void onConnected(Bundle connectionHint) {
+        // Connected to Google Play services!
+        // The good stuff goes here.
+    }
+
+    @Override
+    public void onConnectionSuspended(int cause) {
+        // The connection has been interrupted.
+        // Disable any UI components that depend on Google APIs
+        // until onConnected() is called.
+    }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult result) {
+        // This callback is important for handling errors that
+        // may occur while attempting to connect with Google.
+    }
+
+    private String getMostProbableCurrentLocation()
+    {
+        GoogleApiClient mGoogleApiClient = new GoogleApiClient
+                .Builder(this)
+                .addApi(Places.GEO_DATA_API)
+                .addApi(Places.PLACE_DETECTION_API)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .build();
+
+        mGoogleApiClient.connect();
+
+        final String[] mostLikelyCurrentLocation = new String[1];
+
+        PendingResult<PlaceLikelihoodBuffer> result = Places.PlaceDetectionApi.getCurrentPlace(mGoogleApiClient, null);
+        result.setResultCallback(new ResultCallback<PlaceLikelihoodBuffer>() {
+
+            @Override
+            public void onResult(PlaceLikelihoodBuffer likelyPlaces) {
+                mostLikelyCurrentLocation[0] = String.format("%s", likelyPlaces.get(0).getPlace().getName());
+                /*ArrayList<PlaceLikelihood> likelyPlacesList = new ArrayList<PlaceLikelihood>();
+                for (PlaceLikelihood placeLikelihood : likelyPlaces) {
+                    Log.d("PLACE_API_RESULT", String.format("Place '%s' has likelihood: %g",
+                            placeLikelihood.getPlace().getName(),
+                            placeLikelihood.getLikelihood()));
+
+                    likelyPlacesList.add(placeLikelihood);
+                }*/
+
+                likelyPlaces.release();
+                //mostLikelyCurrentLocation[0] = String.format("%s", likelyPlacesList.get(0).getPlace().getName() + "..." + likelyPlacesList.get(0).getLikelihood());
+
+                _presenter.setLocation(mostLikelyCurrentLocation[0]);
+            }
+        });
+
+        return mostLikelyCurrentLocation[0];
     }
 }
 

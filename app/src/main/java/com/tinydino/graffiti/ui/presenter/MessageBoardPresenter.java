@@ -77,6 +77,10 @@ public class MessageBoardPresenter {
         _view.playNotificationSound();
     }
 
+    public void setLocation(String location) {
+        _location = location;
+    }
+
     public interface View {
         void addMessageToList(ChatMessage message);
         void playNotificationSound();
