@@ -24,6 +24,9 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
+                <data
+                    android:host="gitkit"
+                    android:scheme="com.googleusercontent.apps.305423380238-3s7mpe4eu9bjaoe2rcc4j8a4438jth71" />
             </intent-filter>
         </activity>
         <activity
@@ -42,6 +45,15 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_api_key"/>
+        <meta-data
+            android:name="identitytoolkit.api_key"
+            android:value="@string/google_public_api_access_key" />
+        <meta-data
+            android:name="identitytoolkit.server_client_id"
+            android:value="@string/google_server_client_id" />
+        <meta-data
+            android:name="identitytoolkit.server_widget_url"
+            android:value="http://example.com/endpoint" />
     </application>
 
 </manifest>
