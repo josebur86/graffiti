@@ -2,7 +2,6 @@ package com.tinydino.graffiti.ui.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.widget.Toast;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
@@ -16,6 +15,9 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        this.overridePendingTransition(R.anim.slide_in_right, android.R.anim.slide_out_right);
+
         setContentView(R.layout.activity_map);
 
         MapFragment mapFragment = (MapFragment)getFragmentManager().findFragmentById(R.id.map);

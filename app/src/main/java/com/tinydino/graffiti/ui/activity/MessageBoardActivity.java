@@ -54,6 +54,9 @@ public class MessageBoardActivity extends BaseActivity implements MessageBoardPr
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        this.overridePendingTransition(R.anim.slide_in_right, android.R.anim.slide_out_right);
+
         setContentView(R.layout.activity_message_board);
 
         _messageEdit = (TextView) findViewById(R.id.editMessage);
