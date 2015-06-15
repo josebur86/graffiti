@@ -15,21 +15,19 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.github.nkzawa.emitter.Emitter;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.location.places.PlaceLikelihoodBuffer;
 import com.google.android.gms.location.places.Places;
-
-import com.github.nkzawa.emitter.Emitter;
-import com.tinydino.graffiti.domain.chat.ChatMessage;
-import com.tinydino.graffiti.ui.util.ChatMessageAdapter;
-import com.tinydino.graffiti.ui.util.MessageListener;
 import com.tinydino.graffiti.R;
+import com.tinydino.graffiti.domain.chat.ChatMessage;
 import com.tinydino.graffiti.ui.presenter.MessageBoardPresenter;
 import com.tinydino.graffiti.ui.presenter.UIModule;
-//import com.tinydino.graffiti.ui.presenter.UIModule;
+import com.tinydino.graffiti.ui.util.ChatMessageAdapter;
+import com.tinydino.graffiti.ui.util.MessageListener;
 
 import java.io.ByteArrayOutputStream;
 import java.nio.ByteBuffer;
@@ -38,6 +36,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javax.inject.Inject;
+
+//import com.tinydino.graffiti.ui.presenter.UIModule;
 
 public class MessageBoardActivity extends BaseActivity implements MessageBoardPresenter.View, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     private ChatMessageAdapter _messageAdapter;
@@ -251,6 +251,8 @@ public class MessageBoardActivity extends BaseActivity implements MessageBoardPr
                 //mostLikelyCurrentLocation[0] = String.format("%s", likelyPlacesList.get(0).getPlace().getName() + "..." + likelyPlacesList.get(0).getLikelihood());
 
                 _presenter.setLocation(mostLikelyCurrentLocation[0]);
+                if (getActionBar() != null)
+                    getActionBar().setTitle(mostLikelyCurrentLocation[0]);
             }
         });
 

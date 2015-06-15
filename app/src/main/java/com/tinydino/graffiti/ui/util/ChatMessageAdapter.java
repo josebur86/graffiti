@@ -46,7 +46,7 @@ public class ChatMessageAdapter extends ArrayAdapter<ChatMessage> {
         }
 
         TextView userText = (TextView) v.findViewById(R.id.chat_user);
-        userText.setText(message.UserName + "\n[" + message.UserLocation + "]");
+        userText.setText(message.UserName);
 
         TextView messageText = (TextView) v.findViewById(R.id.chat_message);
         messageText.setText(message.Message);
