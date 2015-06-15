@@ -29,12 +29,14 @@
         <activity
             android:name=".ui.activity.MessageBoardActivity"
             android:label="@string/title_activity_message_board"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            android:parentActivityName=".ui.activity.UserLoginActivity" >
         </activity>
         <activity
             android:name=".ui.activity.MapActivity"
             android:label="Map"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            android:parentActivityName=".ui.activity.MessageBoardActivity" >
         </activity>
         <meta-data
             android:name="com.google.android.gms.version"
